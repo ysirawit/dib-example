@@ -1,0 +1,33 @@
+{
+  "builders": [
+    {
+      "type": "openstack",
+      "flavor": "",
+      "domain_name": "",
+      "tenant_id": "",
+      "region": "asia-southeast",
+      "image_name": "",
+      "source_image": "",
+      "networks": "",
+      "floating_ip_pool": "",
+      "use_floating_ip": true,
+      "ssh_username": "nc-user",
+      "ssh_private_key_file": "",
+      "ssh_keypair_name": "packer_build",
+      "security_groups": [ "default" , "SSH" ]
+    }
+  ],
+  "provisioners": [{
+    "type": "file",
+    "source": "/opt/setup_magento.sh",
+    "destination": "/tmp/"
+  },
+  {
+    "type": "shell",
+    "inline": [
+       "export LC_ALL=\"en_US.UTF-8\"",
+       "export LC_CTYPE=\"en_US.UTF-8\"",
+       "sudo apt-get clean all"
+    ]
+  }]
+}
